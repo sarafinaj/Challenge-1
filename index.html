@@ -8,31 +8,81 @@
 	</head>
 	<body>
 		<div id="title">
-			<h1>trip to mars</h1>
-			<h3>
+			<h1>A trip to mars</h1>
+			<h2>
 				Current situation
-			</h3>
+			</h2>
+		</div>
+		<div>
+			<figure class="titlefordesktop rocket">
+				<img src="images/rocket.svg" alt="large rocket on the right side">
+			</figure>
+			<figure class="titlefordesktop arrow">
+				<img src="images/arrow_down.svg" alt="an arrow down to let the user know to scroll down">
+			</figure>
 		</div>
 		<div class="grid-container">
-			<div class="section1"><h2>How far are we &#63;</h2></div>
-			<div class="section2">
-				<div class="subsection1">
-					<h2>Food</h2>
-				</div>
-				<div class="subsection2">
-					<h2>Drinks</h2>
+			<div class="section1 distancebox">
+				<h1 class="titlesection">How far are we &#63;</h1>
+				<div class="distancetomars">
+					<figure class="earth">
+						<img src="images/earth.svg" alt="icon of earth">
+					</figure>
+					<figure class="rocketsmall">
+						<img src="images/rocketsmall.svg" alt="icon of earth">
+					</figure>
+					<div class="dashedline">
+						<p>
+							
+						</p>
+					</div>
+					<figure class="mars">
+						<img src="images/mars.svg" alt="icon of earth">
+					</figure>
 				</div>
 			</div>
-			<div class="section1">
-				<h2>Time</h2>
-				<div id="earth">
-					<h3>Earth</h3>
+			<div class="section2 foodanddrinks">
+				<div class="subsection1">
+					<h1 class="titlesection">Food</h1>
 				</div>
-				<div id="mars">
-					<h3>Mars</h3>
+				<div class="subsection2">
+					<h1 class="titlesection">Drinks</h1>
+					<div id="donut-chart">
+    					<svg></svg>
+  					</div>
+				</div>
+				<div class=chartfoodfortabletdesktop>
+					
+				</div>
+				<div class=chartdrinksfortabletdesktop>
+					
+				</div>
+			</div>
+			<div class="section1 clocks">
+				<h1 class="timetitle titlesection">Time</h1>
+				<div class="section2">
+					<div id="earthsection" class="subsection1">
+						<h3>Earth</h3>
+						<div id="clock">
+							<div id="hours"></div>
+							<div id="minutes"></div>
+							<div id="seconds"></div>
+						</div>
+					</div>
+					<div id="marssection" class="subsection2">
+						<h3>Mars</h3>
+						<div id="clock">
+							<div id="hours"></div>
+							<div id="minutes"></div>
+							<div id="seconds"></div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript" src="scripts/challenge1.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<script 
+			type="text/javascript" src="scripts/challenge1.js">
+		</script>
 	</body>
 </html>
