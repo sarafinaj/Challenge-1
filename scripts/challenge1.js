@@ -15,58 +15,59 @@ function set(id, deg) {
 
 /*---PIECHARTS---*/
 
-function sliceSize(dataNum, dataTotal) {
-  return (dataNum / dataTotal) * 360;
-}
-function addSlice(sliceSize, pieElement, offset, sliceID, color) {
-  $(pieElement).append("<div class='slice "+sliceID+"'><span></span></div>");
-  var offset = offset - 1;
-  var sizeRotation = -179 + sliceSize;
-  $("."+sliceID).css({
-    "transform": "rotate("+offset+"deg) translate3d(0,0,0)"
-  });
-  $("."+sliceID+" span").css({
-    "transform"       : "rotate("+sizeRotation+"deg) translate3d(0,0,0)",
-    "background-color": color
-  });
-}
-function iterateSlices(sliceSize, pieElement, offset, dataCount, sliceCount, color) {
-  var sliceID = "s"+dataCount+"-"+sliceCount;
-  var maxSize = 179;
-  if(sliceSize<=maxSize) {
-    addSlice(sliceSize, pieElement, offset, sliceID, color);
-  } else {
-    addSlice(maxSize, pieElement, offset, sliceID, color);
-    iterateSlices(sliceSize-maxSize, pieElement, offset+maxSize, dataCount, sliceCount+1, color);
+var chart = new Chartist.Pie('.ct-chart', {
+  series: [10, 20, 50, 20, 5, 50],
+  labels: ['Fruit', 'Veggies', 'Spreads', 'Canned', 'Sweats', 'Bread']
+}, {
+  donut: true,
+  showLabel: true
+});
+
+chart.on('draw', function(data) {
+  if(data.type === 'slice') {
+    // Get the total path length in order to use for dash array animation
+    var pathLength = data.element._node.getTotalLength();
+
+    // Set a dasharray that matches the path length as prerequisite to animate dashoffset
+    data.element.attr({
+      'stroke-dasharray': pathLength + 'px ' + pathLength + 'px'
+    });
+
+    // Create animation definition while also assigning an ID to the animation for later sync usage
+    var animationDefinition = {
+      'stroke-dashoffset': {
+        id: 'anim' + data.index,
+        dur: 1000,
+        from: -pathLength + 'px',
+        to:  '0px',
+        easing: Chartist.Svg.Easing.easeOutQuint,
+        // We need to use `fill: 'freeze'` otherwise our animation will fall back to initial (not visible)
+        fill: 'freeze'
+      }
+    };
+
+    // If this was not the first slice, we need to time the animation so that it uses the end sync event of the previous animation
+    if(data.index !== 0) {
+      animationDefinition['stroke-dashoffset'].begin = 'anim' + (data.index - 1) + '.end';
+    }
+
+    // We need to set an initial value before the animation starts as we are not in guided mode which would do that for us
+    data.element.attr({
+      'stroke-dashoffset': -pathLength + 'px'
+    });
+
+    // We can't use guided mode as the animations need to rely on setting begin manually
+    // See http://gionkunz.github.io/chartist-js/api-documentation.html#chartistsvg-function-animate
+    data.element.animate(animationDefinition, false);
   }
-}
-function createPie(dataElement, pieElement) {
-  var listData = [];
-  $(dataElement+"span").each(function() {
-    listData.push(Number($(this).html()));
-  });
-  var listTotal = 0;
-  for(var i=0; i<listData.length; i++) {
-    listTotal += listData[i];
+});
+
+// For the sake of the example we update the chart every time it's created with a delay of 8 seconds
+chart.on('created', function() {
+  if(window.__anim21278907124) {
+    clearTimeout(window.__anim21278907124);
+    window.__anim21278907124 = null;
   }
-  var offset = 0;
-  var color = [
-    "cornflowerblue", 
-    "olivedrab", 
-    "orange", 
-    "tomato", 
-    "crimson", 
-    "purple", 
-    "turquoise", 
-    "forestgreen", 
-    "navy", 
-    "gray"
-  ];
-  for(var i=0; i<listData.length; i++) {
-    var size = sliceSize(listData[i], listTotal);
-    iterateSlices(size, pieElement, offset, i, 0, color[i]);
-    $(dataElement+" li:nth-child("+(i+1)+")").css("border-color", color[i]);
-    offset += size;
-  }
-}
-createPie(".pieID.legend", ".pieID.pie");
+  window.__anim21278907124 = setTimeout(chart.update.bind(chart), 10000);
+});
+
