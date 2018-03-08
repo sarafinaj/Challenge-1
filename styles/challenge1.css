@@ -149,6 +149,7 @@ div.subsection1, div.subsection2{
 		background-color: #8A3B79;
 		padding: 10px 5px 10px 15px;
 		filter: drop-shadow( 5px 5px 5px rgba(0, 0, 0, 0.25));
+		margin-bottom: 30px;
 	}
 
 	#title > h1{
@@ -173,14 +174,17 @@ div.subsection1, div.subsection2{
 		width: 90%;
 		position: relative;
 		left: 5%;
-		top: 20%;
+		top: 15px;
+	}
+
+	div.section1{
+		margin-bottom: 59px;
 	}
 
 	div.section2{
 		display: grid;
 		grid-template-columns: 48% 48%;
 		grid-column-gap: 4%;
-		
 	} 
 
 	div.subsection1{
@@ -197,7 +201,7 @@ div.subsection1, div.subsection2{
 		position: relative;
 		width: 300px;
 		height: 34px;
-		margin-bottom: 30px;
+		margin-bottom: 10px;
 		margin-top: 50px;
 	}
 
@@ -249,8 +253,13 @@ div.subsection1, div.subsection2{
 
 	/*---FOODDRINKS---*/
 	div.foodanddrinks{
-		margin-bottom: 30px;
+		margin-bottom: 40px;
 	}
+
+	.chartfortabletdesktop{
+		display: none;
+	}
+
 
 	/*---TIME---*/
 	#clock{
@@ -287,7 +296,7 @@ div.subsection1, div.subsection2{
 }
 
 /*---TABLET LANDSCAPE---*/
-@media only screen and (min-width: 668px) and (max-width: 1024px){
+@media only screen and (min-width: 668px) and (max-width: 1366px){
 	body{
 		background: linear-gradient(to bottom left, #8A3B78, #200738);
 	}
@@ -313,6 +322,8 @@ div.subsection1, div.subsection2{
 
 	h1.titlesection{
 		font-size: 2em;
+		position: relative;
+		top: 10px;
 	}
 
 	h3{
@@ -324,10 +335,11 @@ div.subsection1, div.subsection2{
 
 	div.grid-container{
 		position: relative;
-		left: 5%;
+		left: 7%;
 		display: grid;
 		grid-template-columns: 20% 20% 20% 20% 20%;
 		grid-column-gap: 2%;
+		height: 653px;
 	}
 
 	div.section1:nth-child(1){
@@ -337,12 +349,16 @@ div.subsection1, div.subsection2{
 
 	div.section1:nth-child(3){
 		grid-column: 4/5;
+		height: 570px;
 	}
 
 	div.section2{
 		grid-column: 2/4;
 	}
 
+	div.subsection1, div.subsection2{
+		height: 275px;
+	}
 	/*---DISTANCE---*/
 
 	.distancetomars{
@@ -396,7 +412,8 @@ div.subsection1, div.subsection2{
 
 	#marssection{
 		position: relative;
-		top: 83px;
+		top: -27px;
+		height: 0px;
 	}
 
 	.dashedline{
@@ -418,6 +435,20 @@ div.subsection1, div.subsection2{
 
 	.subsection1{
 		margin-bottom: 20px;
+	}
+
+	.donut{
+		display: none !important;
+	}
+
+	.donutchart{
+		display: none;
+	}
+
+	#foodbarchart, #drinksbarchart{
+		position: relative;
+		top: 20px;
+		left: -8px;
 	}
 
 	/*---TIME---*/
@@ -457,7 +488,7 @@ div.subsection1, div.subsection2{
 }
 
 /*---KLEIN DESKTOP SCHERM---*/
-@media only screen and (min-width: 1025px) and (max-width: 2280px){
+@media only screen and (min-width: 1367px) and (max-width: 2280px){
 	body{
 		background: linear-gradient(to bottom left, #8A3B78, #200738);
 	}
@@ -516,22 +547,25 @@ div.subsection1, div.subsection2{
 
 	div.grid-container{
 		position: relative;
-		left: 9%;
-		top: -60px;
+		left: 10%;
+		top: -230px;
 		display: grid;
-		grid-template-columns: 20% 20% 20% 20% 20%;
+		grid-template-columns: 20% 20% 20% 20%;
 		grid-column-gap: 2%;
+		height: 600px;
 	}
 
 	.section1:nth-child(1),
 	.section1:nth-child(3){
-		height: 600px;
+		height: 721px;
 		width: 200px;
+		top: -650px;
 	}
 
 	.section1:nth-child(1){
 		position: relative;
 		left: 3%;
+		top: 70px;
 	}
 
 	div.section1:nth-child(1){
@@ -546,6 +580,11 @@ div.subsection1, div.subsection2{
 		grid-column: 1/3;
 		position: relative;
 		top: -598px;
+	}
+
+	.subsection2:nth-child(4){
+		position: relative;
+		top: 20px;
 	}
 
 	/*---DISTANCE---*/
@@ -569,7 +608,7 @@ div.subsection1, div.subsection2{
 	.rocketsmall{
 		width: 127px;
 		position: absolute;
-		top: 287px;
+		top: 417px;
 		left: 40px;
 		z-index: 9;
 		-webkit-animation-name: move;
@@ -580,21 +619,21 @@ div.subsection1, div.subsection2{
 	}
 
 	@-webkit-keyframes move {
-    	from {bottom: 287px;}
+    	from {bottom: 417px;}
     	to {top: -14px;}
 	}
 
 	.earth{
 		width: 184px;
 		position: relative;
-		top: 300px;
+		top: 410px;
 		left: 11px;
 	}
 
 	.mars{
 		width: 228px;
 		position: relative;
-		top: -600px;
+		top: -710px;
 		left: -8px;
 	}
 
@@ -603,7 +642,7 @@ div.subsection1, div.subsection2{
 		border-style: dashed;
 		border-radius: 10px;
 		letter-spacing: 2px;
-		height: 300px;
+		height: 412px;
 		width: 0px;
 		position: relative;
 		top: -140px;
@@ -612,11 +651,20 @@ div.subsection1, div.subsection2{
 
 	/*---FOODDRINKS---*/
 	div.foodanddrinks{
-		margin-bottom: 30px;
+		position: relative;
+		top: -650px;
 	}
 
 	.subsection1{
 		margin-bottom: 20px;
+	}
+
+	.donut{
+		display: none !important;
+	}
+
+	.donutchart{
+		display: none;
 	}
 
 	/*---TIME---*/
@@ -665,6 +713,8 @@ div.subsection1, div.subsection2{
 
 	.clocks{
 		margin-bottom: 40px;
+		position: relative;
+		top: -652px;
 	}
 }
 
@@ -676,7 +726,7 @@ div.subsection1, div.subsection2{
 
 	div.grid-container{
 		position: relative;
-		left: 9%;
+		left: 42%;
 		top: -50px;
 		display: grid;
 		grid-template-columns: 20% 20% 20% 20% 20%;
@@ -849,6 +899,10 @@ div.subsection1, div.subsection2{
 
 	.subsection1{
 		margin-bottom: 20px;
+	}
+
+	.donut{
+		display: none !important;
 	}
 
 	/*---TIME---*/

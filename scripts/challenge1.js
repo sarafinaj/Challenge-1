@@ -5,6 +5,8 @@ set('hours',   30 * new Date().getHours());
 set('minutes',  6 * new Date().getMinutes());
 set('seconds', 10 * new Date().getSeconds());
 
+/*---DONUTCHARTS---*/
+
 function set(id, deg) {
   var el = document.getElementById(id),
       rotation = 'rotate(' + deg + 'deg)';
@@ -13,36 +15,44 @@ function set(id, deg) {
   el.style.webkitTransform = rotation;
 }
 
-/*---PIECHARTS---*/
+var chart = new Chartist.Pie('#fooddonutchart', {
+          series: [30, 30, 10, 40, 15, 50],
+          labels: ['Fruit', 'Rice', 'Spreads', 'Canned', 'Sweets', 'Bread']
+      }, {
+          donut: true,
+          showLabel: true
+      });
 
-var chart = new Chartist.Pie('.ct-chart', {
-  series: [10, 20, 50, 20, 5, 50],
-  labels: ['Fruit', 'Veggies', 'Spreads', 'Canned', 'Sweats', 'Bread']
-}, {
-  donut: true,
-  showLabel: true
-});
+var chart = new Chartist.Pie('#drinksdonutchart', {
+          series: [20, 30, 60, 40, 10, 40],
+          labels: ['Milk', 'Juice', 'Water', 'Soda', 'Alcohol', 'Tea']
+      }, {
+          donut: true,
+          showLabel: true
+      });
+// As options we currently only set a static size of 300x200 px. We can also omit this and use aspect ratio containers
+// as you saw in the previous example
 
 chart.on('draw', function(data) {
-  if(data.type === 'slice') {
+    if(data.type === 'slice') {
     // Get the total path length in order to use for dash array animation
-    var pathLength = data.element._node.getTotalLength();
+      var pathLength = data.element._node.getTotalLength();
 
-    // Set a dasharray that matches the path length as prerequisite to animate dashoffset
-    data.element.attr({
-      'stroke-dasharray': pathLength + 'px ' + pathLength + 'px'
-    });
+      // Set a dasharray that matches the path length as prerequisite to animate dashoffset
+      data.element.attr({
+        'stroke-dasharray': pathLength + 'px ' + pathLength + 'px'
+      });
 
-    // Create animation definition while also assigning an ID to the animation for later sync usage
-    var animationDefinition = {
-      'stroke-dashoffset': {
-        id: 'anim' + data.index,
-        dur: 1000,
-        from: -pathLength + 'px',
-        to:  '0px',
-        easing: Chartist.Svg.Easing.easeOutQuint,
-        // We need to use `fill: 'freeze'` otherwise our animation will fall back to initial (not visible)
-        fill: 'freeze'
+      // Create animation definition while also assigning an ID to the animation for later sync usage
+      var animationDefinition = {
+        'stroke-dashoffset': {
+          id: 'anim' + data.index,
+          dur: 1000,
+          from: -pathLength + 'px',
+          to:  '0px',
+          easing: Chartist.Svg.Easing.easeOutQuint,
+          // We need to use `fill: 'freeze'` otherwise our animation will fall back to initial (not visible)
+          fill: 'freeze'
       }
     };
 
@@ -66,8 +76,25 @@ chart.on('draw', function(data) {
 chart.on('created', function() {
   if(window.__anim21278907124) {
     clearTimeout(window.__anim21278907124);
-    window.__anim21278907124 = null;
-  }
-  window.__anim21278907124 = setTimeout(chart.update.bind(chart), 10000);
+      window.__anim21278907124 = null;
+    }
+    window.__anim21278907124 = setTimeout(chart.update.bind(chart), 10000);
 });
+
+/*---BARCHARTS---*/
+
+new Chartist.Bar('#foodbarchart', {
+  labels: ['Apples', 'Beans', 'Bread', 'Butter', 'Chocolate', 'Cookies', 'Corn', 'Jelly', 'Mango', 'Rice'],
+  series: [15, 20, 50, 5, 8, 7, 20, 5, 15, 10]
+}, {
+  distributeSeries: true
+});
+
+new Chartist.Bar('#drinksbarchart', {
+  labels: ['Milk', 'Apple Juice', 'Water', 'Cola', 'Fanta', 'Rum', 'Wine', 'Tea', 'Bitter Lemon', 'Orange Juice'],
+  series: [30, 20, 20, 7, 30, 50, 5, 5, 8, 10]
+}, {
+  distributeSeries: true
+});
+
 

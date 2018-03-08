@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link type="text/css" href="styles/challenge1.css" rel="stylesheet" />
 		<link rel="stylesheet" href="chartist/dist/chartist.min.css" />
+		<script type="text/javascript" src="chartist/dist/chartist.js"></script>
 	</head>
 	<body>
 		<div id="title">
@@ -43,21 +44,24 @@
 				</div>
 			</div>
 			<div class="section2 foodanddrinks">
-				<div class="subsection1">
+				<div class="subsection1 donutchart">
 					<h1 class="titlesection">Food</h1>
-					<div class="ct-chart ct-perfect-fourth" id="chart1"></div>
+					<div class="ct-chart ct-square donut" id="fooddonutchart"></div>
 				</div>
-				<div class="subsection2">
+
+				<div class="subsection2 donutchart">
 					<h1 class="titlesection">Drinks</h1>
-					<div id="donut-chart">
-    					<svg></svg>
-  					</div>
+					<div class="ct-chart ct-square donut" id="drinksdonutchart"></div>
 				</div>
-				<div class=chartfoodfortabletdesktop>
-					
+
+				<div class="chartfortabletdesktop subsection1">
+					<h1 class="titlesection">Food</h1>
+					<div class="ct-chart ct-octave" id="foodbarchart"></div>
 				</div>
-				<div class=chartdrinksfortabletdesktop>
-					
+
+				<div class="chartfortabletdesktop subsection2">
+					<h1 class="titlesection">Drinks</h1>
+					<div class="ct-chart ct-octave" id="drinksbarchart"></div>
 				</div>
 			</div>
 			<div class="section1 clocks">
